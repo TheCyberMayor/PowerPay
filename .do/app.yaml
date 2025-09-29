@@ -1,0 +1,100 @@
+# DigitalOcean App Platform Configuration
+name: powerpay
+services:
+
+# API Backend Service
+- name: api
+  source_dir: /apps/api
+  github:
+    repo: YOUR_USERNAME/PowerPay
+    branch: main
+    deploy_on_push: true
+  run_command: npm run start:prod
+  build_command: npm run build
+  environment_slug: node-js
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  routes:
+  - path: /api
+  envs:
+  - key: NODE_ENV
+    value: production
+  - key: DATABASE_URL
+    value: ${db.DATABASE_URL}
+  - key: REDIS_URL  
+    value: ${redis.DATABASE_URL}
+  - key: JWT_SECRET
+    value: your-super-secure-jwt-secret-key
+  - key: PAYSTACK_SECRET_KEY
+    value: sk_live_your_paystack_secret_key
+  - key: FLUTTERWAVE_SECRET_KEY
+    value: FLWSECK-your-flutterwave-secret-key
+    
+# Web App Service
+- name: web
+  source_dir: /apps/web
+  github:
+    repo: YOUR_USERNAME/PowerPay
+    branch: main
+    deploy_on_push: true
+  build_command: npm run build
+  environment_slug: node-js
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  envs:
+  - key: REACT_APP_API_URL
+    value: ${api.PUBLIC_URL}/api
+  - key: REACT_APP_ENVIRONMENT
+    value: production
+  - key: REACT_APP_PAYSTACK_PUBLIC_KEY
+    value: pk_live_your_paystack_public_key
+
+# Admin Dashboard Service  
+- name: admin
+  source_dir: /apps/admin
+  github:
+    repo: YOUR_USERNAME/PowerPay
+    branch: main
+    deploy_on_push: true
+  build_command: npm run build
+  environment_slug: node-js
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  envs:
+  - key: REACT_APP_API_URL
+    value: ${api.PUBLIC_URL}/api
+  - key: REACT_APP_ENVIRONMENT
+    value: production
+
+# Static Assets
+static_sites:
+- name: assets
+  source_dir: /
+  github:
+    repo: YOUR_USERNAME/PowerPay
+    branch: main
+    deploy_on_push: true
+  routes:
+  - path: /assets
+
+# Databases
+databases:
+- name: db
+  engine: PG
+  version: "15"
+  size: basic-xs
+  
+- name: redis
+  engine: REDIS
+  version: "7"
+  size: basic-xs
+
+# Domain Configuration
+domains:
+- domain: powerpay.ng
+  type: PRIMARY
+  certificate_id: your-ssl-cert-id
+- domain: admin.powerpay.ng
+  type: ALIAS
+- domain: api.powerpay.ng
+  type: ALIAS

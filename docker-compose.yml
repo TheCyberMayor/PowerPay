@@ -1,0 +1,114 @@
+version: '3.8'
+
+services:
+  # Database Services
+  postgres:
+    image: postgres:15-alpine
+    container_name: powerpay_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: powerpay
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infrastructure/docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - powerpay_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: powerpay_redis
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+    networks:
+      - powerpay_network
+
+  # Backend API
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+    container_name: powerpay_api
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    environment:
+      NODE_ENV: production
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: powerpay
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: password
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./apps/api/logs:/app/logs
+    networks:
+      - powerpay_network
+
+  # Web Application
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    container_name: powerpay_web
+    restart: unless-stopped
+    ports:
+      - '3001:80'
+    environment:
+      REACT_APP_API_URL: http://localhost:3000/api/v1
+    depends_on:
+      - api
+    networks:
+      - powerpay_network
+
+  # Admin Dashboard
+  admin:
+    build:
+      context: ./apps/admin
+      dockerfile: Dockerfile
+    container_name: powerpay_admin
+    restart: unless-stopped
+    ports:
+      - '3002:80'
+    environment:
+      REACT_APP_API_URL: http://localhost:3000/api/v1
+    depends_on:
+      - api
+    networks:
+      - powerpay_network
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: powerpay_nginx
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./infrastructure/docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./infrastructure/docker/nginx/ssl:/etc/nginx/ssl
+    depends_on:
+      - api
+      - web
+      - admin
+    networks:
+      - powerpay_network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  powerpay_network:
+    driver: bridge
