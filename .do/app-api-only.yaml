@@ -1,0 +1,42 @@
+# DigitalOcean App Platform Configuration - API Only
+name: powerpay
+services:
+
+# API Backend Service
+- name: api
+  source_dir: /apps/api
+  github:
+    repo: TheCyberMayor/PowerPay
+    branch: master
+    deploy_on_push: true
+  run_command: npm run start:prod
+  build_command: npm run build
+  environment_slug: node-js
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  routes:
+  - path: /
+  envs:
+  - key: NODE_ENV
+    value: production
+  - key: NPM_CONFIG_PRODUCTION
+    value: "false"
+  - key: DATABASE_URL
+    value: ${db.DATABASE_URL}
+  - key: DATABASE_SSL
+    value: "true"
+  - key: QUEUES_ENABLED
+    value: "false"
+  - key: JWT_SECRET
+    value: your-super-secure-jwt-secret-key
+  - key: PAYSTACK_SECRET_KEY
+    value: sk_live_your_paystack_secret_key
+  - key: FLUTTERWAVE_SECRET_KEY
+    value: FLWSECK-your-flutterwave-secret-key
+
+# Databases
+databases:
+- name: db
+  engine: PG
+  version: "15"
+  size: basic-xs

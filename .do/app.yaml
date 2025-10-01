@@ -1,4 +1,4 @@
-# DigitalOcean App Platform Configuration
+# DigitalOcean App Platform Configuration - API Only (Frontend services disabled until React source files are created)
 name: powerpay
 services:
 
@@ -15,7 +15,7 @@ services:
   instance_count: 1
   instance_size_slug: basic-xxs
   routes:
-  - path: /api
+  - path: /
   envs:
   - key: NODE_ENV
     value: production
@@ -33,61 +33,6 @@ services:
     value: sk_live_your_paystack_secret_key
   - key: FLUTTERWAVE_SECRET_KEY
     value: FLWSECK-your-flutterwave-secret-key
-    
-# Web App Service
-- name: web
-  source_dir: /apps/web
-  github:
-    repo: TheCyberMayor/PowerPay
-    branch: master
-    deploy_on_push: true
-  build_command: npm run build
-  environment_slug: node-js
-  instance_count: 1
-  instance_size_slug: basic-xxs
-  routes:
-  - path: /
-  envs:
-  - key: NPM_CONFIG_PRODUCTION
-    value: "false"
-  - key: REACT_APP_API_URL
-    value: ${api.PUBLIC_URL}/api
-  - key: REACT_APP_ENVIRONMENT
-    value: production
-  - key: REACT_APP_PAYSTACK_PUBLIC_KEY
-    value: pk_live_your_paystack_public_key
-
-# Admin Dashboard Service  
-- name: admin
-  source_dir: /apps/admin
-  github:
-    repo: TheCyberMayor/PowerPay
-    branch: master
-    deploy_on_push: true
-  build_command: npm run build
-  environment_slug: node-js
-  instance_count: 1
-  instance_size_slug: basic-xxs
-  routes:
-  - path: /admin
-  envs:
-  - key: NPM_CONFIG_PRODUCTION
-    value: "false"
-  - key: REACT_APP_API_URL
-    value: ${api.PUBLIC_URL}/api
-  - key: REACT_APP_ENVIRONMENT
-    value: production
-
-# Static Assets
-static_sites:
-- name: assets
-  source_dir: /
-  github:
-    repo: TheCyberMayor/PowerPay
-    branch: master
-    deploy_on_push: true
-  routes:
-  - path: /assets
 
 # Databases
 databases:
@@ -96,12 +41,49 @@ databases:
   version: "15"
   size: basic-xs
 
-# Domain Configuration
-# domains:
-# - domain: powerpay.ng
-#   type: PRIMARY
-#   certificate_id: your-ssl-cert-id
-# - domain: admin.powerpay.ng
-#   type: ALIAS
-# - domain: api.powerpay.ng
-#   type: ALIAS
+# Frontend services temporarily disabled due to missing React source files
+# Uncomment and re-deploy after creating complete React applications
+#
+# # Web App Service
+# - name: web
+#   source_dir: /apps/web
+#   github:
+#     repo: TheCyberMayor/PowerPay
+#     branch: master
+#     deploy_on_push: true
+#   build_command: npm run build
+#   environment_slug: node-js
+#   instance_count: 1
+#   instance_size_slug: basic-xxs
+#   routes:
+#   - path: /web
+#   envs:
+#   - key: NPM_CONFIG_PRODUCTION
+#     value: "false"
+#   - key: REACT_APP_API_URL
+#     value: ${api.PUBLIC_URL}/api
+#   - key: REACT_APP_ENVIRONMENT
+#     value: production
+#   - key: REACT_APP_PAYSTACK_PUBLIC_KEY
+#     value: pk_live_your_paystack_public_key
+#
+# # Admin Dashboard Service  
+# - name: admin
+#   source_dir: /apps/admin
+#   github:
+#     repo: TheCyberMayor/PowerPay
+#     branch: master
+#     deploy_on_push: true
+#   build_command: npm run build
+#   environment_slug: node-js
+#   instance_count: 1
+#   instance_size_slug: basic-xxs
+#   routes:
+#   - path: /admin
+#   envs:
+#   - key: NPM_CONFIG_PRODUCTION
+#     value: "false"
+#   - key: REACT_APP_API_URL
+#     value: ${api.PUBLIC_URL}/api
+#   - key: REACT_APP_ENVIRONMENT
+#     value: production
