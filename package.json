@@ -13,7 +13,7 @@
     "dev:web": "cd apps/web && npm run dev",
     "dev:admin": "cd apps/admin && npm run dev",
     "dev:mobile": "cd apps/mobile && npm run start",
-    "build": "npm run build:api && npm run build:web && npm run build:admin",
+    "build": "npm run build:api",
     "build:api": "cd apps/api && npm run build",
     "build:web": "cd apps/web && npm run build",
     "build:admin": "cd apps/admin && npm run build",
