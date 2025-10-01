@@ -6,8 +6,8 @@ services:
 - name: api
   source_dir: /apps/api
   github:
-    repo: YOUR_USERNAME/PowerPay
-    branch: main
+    repo: TheCyberMayor/PowerPay
+    branch: master
     deploy_on_push: true
   run_command: npm run start:prod
   build_command: npm run build
@@ -21,8 +21,10 @@ services:
     value: production
   - key: DATABASE_URL
     value: ${db.DATABASE_URL}
-  - key: REDIS_URL  
-    value: ${redis.DATABASE_URL}
+  - key: DATABASE_SSL
+    value: "true"
+  - key: QUEUES_ENABLED
+    value: "false"
   - key: JWT_SECRET
     value: your-super-secure-jwt-secret-key
   - key: PAYSTACK_SECRET_KEY
@@ -34,13 +36,15 @@ services:
 - name: web
   source_dir: /apps/web
   github:
-    repo: YOUR_USERNAME/PowerPay
-    branch: main
+    repo: TheCyberMayor/PowerPay
+    branch: master
     deploy_on_push: true
   build_command: npm run build
   environment_slug: node-js
   instance_count: 1
   instance_size_slug: basic-xxs
+  routes:
+  - path: /
   envs:
   - key: REACT_APP_API_URL
     value: ${api.PUBLIC_URL}/api
@@ -53,13 +57,15 @@ services:
 - name: admin
   source_dir: /apps/admin
   github:
-    repo: YOUR_USERNAME/PowerPay
-    branch: main
+    repo: TheCyberMayor/PowerPay
+    branch: master
     deploy_on_push: true
   build_command: npm run build
   environment_slug: node-js
   instance_count: 1
   instance_size_slug: basic-xxs
+  routes:
+  - path: /admin
   envs:
   - key: REACT_APP_API_URL
     value: ${api.PUBLIC_URL}/api
@@ -71,8 +77,8 @@ static_sites:
 - name: assets
   source_dir: /
   github:
-    repo: YOUR_USERNAME/PowerPay
-    branch: main
+    repo: TheCyberMayor/PowerPay
+    branch: master
     deploy_on_push: true
   routes:
   - path: /assets
@@ -83,18 +89,13 @@ databases:
   engine: PG
   version: "15"
   size: basic-xs
-  
-- name: redis
-  engine: REDIS
-  version: "7"
-  size: basic-xs
 
 # Domain Configuration
-domains:
-- domain: powerpay.ng
-  type: PRIMARY
-  certificate_id: your-ssl-cert-id
-- domain: admin.powerpay.ng
-  type: ALIAS
-- domain: api.powerpay.ng
-  type: ALIAS
+# domains:
+# - domain: powerpay.ng
+#   type: PRIMARY
+#   certificate_id: your-ssl-cert-id
+# - domain: admin.powerpay.ng
+#   type: ALIAS
+# - domain: api.powerpay.ng
+#   type: ALIAS

@@ -45,12 +45,15 @@ import redisConfig from './config/redis.config';
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
-        host: configService.get('database.host'),
-        port: configService.get('database.port'),
-        username: configService.get('database.username'),
-        password: configService.get('database.password'),
-        database: configService.get('database.name'),
-        ssl: configService.get('database.ssl'),
+        url: configService.get('database.url') || undefined,
+        host: configService.get('database.url') ? undefined : configService.get('database.host'),
+        port: configService.get('database.url') ? undefined : configService.get('database.port'),
+        username: configService.get('database.url') ? undefined : configService.get('database.username'),
+        password: configService.get('database.url') ? undefined : configService.get('database.password'),
+        database: configService.get('database.url') ? undefined : configService.get('database.name'),
+        ssl: configService.get('database.ssl')
+          ? { rejectUnauthorized: false }
+          : false,
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         migrations: [__dirname + '/database/migrations/*{.ts,.js}'],
         synchronize: configService.get('NODE_ENV') === 'development',
@@ -59,18 +62,22 @@ import redisConfig from './config/redis.config';
       inject: [ConfigService],
     }),
 
-    // Redis & Bull Queue
-    BullModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        redis: {
-          host: configService.get('redis.host'),
-          port: configService.get('redis.port'),
-          password: configService.get('redis.password'),
-        },
-      }),
-      inject: [ConfigService],
-    }),
+    // Redis & Bull Queue (conditionally enabled)
+    ...(process.env.QUEUES_ENABLED === 'false'
+      ? []
+      : [
+          BullModule.forRootAsync({
+            imports: [ConfigModule],
+            useFactory: (configService: ConfigService) => ({
+              redis: {
+                host: configService.get('redis.host'),
+                port: configService.get('redis.port'),
+                password: configService.get('redis.password'),
+              },
+            }),
+            inject: [ConfigService],
+          }),
+        ]),
 
     // Rate limiting
     ThrottlerModule.forRootAsync({
