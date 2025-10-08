@@ -19,8 +19,6 @@ services:
   envs:
   - key: NODE_ENV
     value: production
-  - key: NPM_CONFIG_PRODUCTION
-    value: "false"
   - key: DATABASE_URL
     value: ${db.DATABASE_URL}
   - key: DATABASE_SSL
