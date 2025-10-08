@@ -203,10 +203,13 @@ cdk.context.json
 .terraform/
 .terraform.lock.hcl
 
-# Secrets and API Keys
+# Secrets and API Keys (avoid over-broad patterns that ignore source code)
 *secret*
 *key*
-*token*
+# 'token' is part of our source (e.g., src/tokens), so do NOT ignore all *token* files.
+# If you have local secret token files, add them explicitly below, e.g.:
+# token.txt
+# .token
 *password*
 !*example*
 !*template*
