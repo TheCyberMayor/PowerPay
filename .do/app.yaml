@@ -1,19 +1,20 @@
-# DigitalOcean App Platform Configuration - API Only (Frontend services disabled until React source files are created)
+# DigitalOcean App Platform Configuration - API Only
 name: powerpay
 services:
 
 # API Backend Service
 - name: api
-  source_dir: /apps/api
+  source_dir: apps/api
   github:
     repo: TheCyberMayor/PowerPay
     branch: master
     deploy_on_push: true
-  run_command: node dist/apps/api/src/main.js
+  run_command: npm run start:prod
   build_command: npm ci && npm run build && ls -la dist/
   environment_slug: node-js
   instance_count: 1
   instance_size_slug: basic-xxs
+  http_port: 3000
   routes:
   - path: /
   envs:
