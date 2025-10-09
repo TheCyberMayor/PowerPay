@@ -40,27 +40,31 @@ import redisConfig from './config/redis.config';
       ],
     }),
 
-    // Database
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        url: configService.get('database.url') || undefined,
-        host: configService.get('database.url') ? undefined : configService.get('database.host'),
-        port: configService.get('database.url') ? undefined : configService.get('database.port'),
-        username: configService.get('database.url') ? undefined : configService.get('database.username'),
-        password: configService.get('database.url') ? undefined : configService.get('database.password'),
-        database: configService.get('database.url') ? undefined : configService.get('database.name'),
-        ssl: configService.get('database.ssl')
-          ? { rejectUnauthorized: false }
-          : false,
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        migrations: [__dirname + '/database/migrations/*{.ts,.js}'],
-        synchronize: configService.get('NODE_ENV') === 'development',
-        logging: configService.get('NODE_ENV') === 'development',
-      }),
-      inject: [ConfigService],
-    }),
+    // Database (conditionally enabled)
+    ...(process.env.DATABASE_URL && process.env.DATABASE_URL !== 'postgresql://placeholder'
+      ? [
+          TypeOrmModule.forRootAsync({
+            imports: [ConfigModule],
+            useFactory: (configService: ConfigService) => ({
+              type: 'postgres',
+              url: configService.get('database.url') || undefined,
+              host: configService.get('database.url') ? undefined : configService.get('database.host'),
+              port: configService.get('database.url') ? undefined : configService.get('database.port'),
+              username: configService.get('database.url') ? undefined : configService.get('database.username'),
+              password: configService.get('database.url') ? undefined : configService.get('database.password'),
+              database: configService.get('database.url') ? undefined : configService.get('database.name'),
+              ssl: configService.get('database.ssl')
+                ? { rejectUnauthorized: false }
+                : false,
+              entities: [__dirname + '/**/*.entity{.ts,.js}'],
+              migrations: [__dirname + '/database/migrations/*{.ts,.js}'],
+              synchronize: configService.get('NODE_ENV') === 'development',
+              logging: configService.get('NODE_ENV') === 'development',
+            }),
+            inject: [ConfigService],
+          }),
+        ]
+      : []),
 
     // Redis & Bull Queue (conditionally enabled)
     ...(process.env.QUEUES_ENABLED === 'false'
