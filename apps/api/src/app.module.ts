@@ -17,6 +17,7 @@ import { AdminModule } from './admin/admin.module';
 import { DiscosModule } from './discos/discos.module';
 import { DatabaseModule } from './database/database.module';
 import { CommonModule } from './common/common.module';
+import { HealthModule } from './health/health.module';
 
 // Configuration
 import databaseConfig from './config/database.config';
@@ -97,17 +98,19 @@ import redisConfig from './config/redis.config';
     ScheduleModule.forRoot(),
 
     // Feature modules
+    HealthModule,
     CommonModule,
-    DatabaseModule,
-    AuthModule,
-    UsersModule,
-    MetersModule,
-    PaymentsModule,
     TokensModule,
-    BillsModule,
-    NotificationsModule,
-    AdminModule,
-    DiscosModule,
+    // Temporarily disabled modules that may require database
+    // DatabaseModule,
+    // AuthModule,
+    // UsersModule,
+    // MetersModule,
+    // PaymentsModule,
+    // BillsModule,
+    // NotificationsModule,
+    // AdminModule,
+    // DiscosModule,
   ],
 })
 export class AppModule {}
