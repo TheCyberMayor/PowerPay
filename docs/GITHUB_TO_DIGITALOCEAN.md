@@ -72,7 +72,6 @@ In DigitalOcean App Platform dashboard, add these **required** variables:
 # Payment Gateways (Required)
 FLUTTERWAVE_SECRET_KEY=FLWSECK-your-flutterwave-secret-key
 INTERSWITCH_SECRET_KEY=your-interswitch-secret-key
-REMITA_SECRET_KEY=your-remita-secret-key
 
 # Security (Required)  
 JWT_SECRET=your-super-secure-jwt-secret-key-32-chars-min

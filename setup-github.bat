@@ -31,7 +31,7 @@ if not "%STATUS%"=="" (
     git add .
     
     echo 💾 Committing changes...
-    git commit -m "Initial commit: PowerPay electricity payment application" -m "Features:" -m "- NestJS backend API with PostgreSQL and Redis" -m "- React web application and admin dashboard" -m "- React Native mobile app" -m "- Nigerian DISCO integrations" -m "- Payment gateway integrations (Flutterwave, Interswitch, Remita)" -m "- DigitalOcean deployment configuration" -m "- Comprehensive documentation"
+    git commit -m "Initial commit: PowerPay electricity payment application" -m "Features:" -m "- NestJS backend API with PostgreSQL and Redis" -m "- React web application and admin dashboard" -m "- React Native mobile app" -m "- Nigerian DISCO integrations" -m "- Payment gateway integrations (Flutterwave, Interswitch)" -m "- DigitalOcean deployment configuration" -m "- Comprehensive documentation"
 ) else (
     echo ✅ No changes to commit
 )

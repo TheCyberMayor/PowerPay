@@ -31,7 +31,6 @@ export enum PaymentMethod {
 
 export enum PaymentGateway {
   FLUTTERWAVE = 'flutterwave',
-  REMITA = 'remita',
   INTERSWITCH = 'interswitch',
 }
 

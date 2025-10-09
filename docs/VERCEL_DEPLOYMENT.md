@@ -171,7 +171,6 @@ The React Native mobile app (`apps/mobile`) cannot be deployed to Vercel. Instea
 - [ ] `JWT_SECRET`
 - [ ] `FLUTTERWAVE_SECRET_KEY`
 - [ ] `INTERSWITCH_SECRET_KEY`
-- [ ] `REMITA_SECRET_KEY`
 - [ ] All DISCO API keys
 - [ ] Notification service keys
 

@@ -33,7 +33,7 @@ Features:
 - React web application and admin dashboard  
 - React Native mobile app
 - Nigerian DISCO integrations
-- Payment gateway integrations (Flutterwave, Interswitch, Remita)
+- Payment gateway integrations (Flutterwave, Interswitch)
 - DigitalOcean deployment configuration
 - Comprehensive documentation"
 else

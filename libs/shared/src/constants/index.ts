@@ -89,14 +89,6 @@ export const PAYMENT_GATEWAYS = {
     maxAmount: 5000000,
     fee: 1.4,
   },
-  REMITA: {
-    name: 'Remita',
-    baseUrl: 'https://remitademo.net/remita/exapp/api/v1',
-    supportedMethods: ['card', 'bank_transfer', 'ussd'],
-    minAmount: 100,
-    maxAmount: 10000000,
-    fee: 1.0,
-  },
   INTERSWITCH: {
     name: 'Interswitch',
     baseUrl: 'https://sandbox.interswitchng.com',

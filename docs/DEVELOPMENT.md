@@ -257,7 +257,6 @@ JWT_EXPIRES_IN=24h
 # Payment Gateways
 FLUTTERWAVE_SECRET_KEY=FLWSECK_TEST-your_flutterwave_secret_key
 INTERSWITCH_SECRET_KEY=your_interswitch_test_key
-REMITA_SECRET_KEY=your_remita_test_key
 
 # Notifications
 TERMII_API_KEY=your_termii_api_key

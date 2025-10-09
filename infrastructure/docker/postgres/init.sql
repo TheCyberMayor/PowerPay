@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS payments (
     total_amount DECIMAL(10,2) NOT NULL,
     status VARCHAR(20) DEFAULT 'pending' CHECK (status IN ('pending', 'processing', 'successful', 'failed', 'cancelled', 'refunded')),
     method VARCHAR(20) NOT NULL CHECK (method IN ('card', 'bank_transfer', 'ussd', 'wallet')),
-    gateway VARCHAR(20) NOT NULL CHECK (gateway IN ('flutterwave', 'remita', 'interswitch')),
+    gateway VARCHAR(20) NOT NULL CHECK (gateway IN ('flutterwave', 'interswitch')),
     type VARCHAR(20) NOT NULL CHECK (type IN ('prepaid_recharge', 'postpaid_bill')),
     description VARCHAR(255),
     channel VARCHAR(100),

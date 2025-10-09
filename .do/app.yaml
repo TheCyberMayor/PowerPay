@@ -29,6 +29,8 @@ services:
     value: your-super-secure-jwt-secret-key
   - key: FLUTTERWAVE_SECRET_KEY
     value: FLWSECK-your-flutterwave-secret-key
+  - key: FLUTTERWAVE_PUBLIC_KEY
+    value: FLWPUBK-your-flutterwave-public-key
 
 # No managed databases - using external PostgreSQL cluster
 # Database connection will be set via environment variable
