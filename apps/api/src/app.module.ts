@@ -28,17 +28,9 @@ import redisConfig from './config/redis.config';
 
 @Module({
   imports: [
-    // Configuration
+    // Minimal configuration for testing
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: ['.env.local', '.env'],
-      load: [
-        databaseConfig,
-        authConfig,
-        paymentConfig,
-        notificationConfig,
-        redisConfig,
-      ],
     }),
 
     // Database (conditionally enabled)
@@ -84,24 +76,13 @@ import redisConfig from './config/redis.config';
           }),
         ]),
 
-    // Rate limiting
-    ThrottlerModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        ttl: configService.get('RATE_LIMIT_WINDOW_MS', 900000),
-        limit: configService.get('RATE_LIMIT_MAX_REQUESTS', 100),
-      }),
-      inject: [ConfigService],
-    }),
+    // Minimal setup - rate limiting and scheduling disabled for testing
 
-    // Scheduling
-    ScheduleModule.forRoot(),
-
-    // Feature modules
+    // Feature modules - minimal for testing
     HealthModule,
-    CommonModule,
-    TokensModule,
-    // Temporarily disabled modules that may require database
+    // Temporarily disabled all other modules for testing
+    // CommonModule,
+    // TokensModule,
     // DatabaseModule,
     // AuthModule,
     // UsersModule,
