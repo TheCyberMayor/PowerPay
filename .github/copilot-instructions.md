@@ -7,7 +7,7 @@ A comprehensive electricity payment application for Nigeria supporting prepaid t
 - **Frontend**: React Native (mobile), React.js (web), React (admin dashboard)
 - **Backend**: Node.js with NestJS framework
 - **Database**: PostgreSQL (primary), Redis (caching)
-- **Payment Gateways**: Flutterwave, Interswitch
+- **Payment Gateways**: Flutterwave (primary)
 - **Notifications**: SMS (Termii), Email (SendGrid), Push (Firebase)
 - **Hosting**: Cloud-based with auto-scaling capabilities
 

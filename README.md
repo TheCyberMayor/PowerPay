@@ -59,7 +59,7 @@ Your PowerPay application will be live in 5-10 minutes.
 - ✅ Tariff and penalty management
 
 ### Integration Features
-- ✅ Payment Gateways: Flutterwave, Interswitch
+- ✅ Payment Gateways: Flutterwave (primary)
 - ✅ DISCO APIs: Ikeja Electric, Eko Disco, Abuja Disco, PHED
 - ✅ Notification Services: Termii SMS, SendGrid Email
 
@@ -69,7 +69,7 @@ Your PowerPay application will be live in 5-10 minutes.
 - **Backend**: Node.js, NestJS, TypeScript
 - **Database**: PostgreSQL, Redis
 - **Authentication**: JWT, OAuth2.0, Passport.js
-- **Payments**: Flutterwave, Interswitch APIs
+- **Payments**: Flutterwave (primary) APIs
 - **Notifications**: Firebase, Termii, SendGrid
 - **Cloud**: AWS (EC2, RDS, S3, Lambda)
 - **Monitoring**: Winston, Prometheus, Grafana

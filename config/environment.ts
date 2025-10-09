@@ -21,8 +21,8 @@ export interface EnvironmentConfig {
   // Payment Gateways
   FLUTTERWAVE_SECRET_KEY: string;
   FLUTTERWAVE_PUBLIC_KEY: string;
-  INTERSWITCH_CLIENT_ID: string;
-  INTERSWITCH_CLIENT_SECRET: string;
+  // INTERSWITCH_CLIENT_ID: string;
+  // INTERSWITCH_CLIENT_SECRET: string;
 
   // DISCO APIs
   IKEJA_ELECTRIC_API_KEY: string;
@@ -82,9 +82,9 @@ export const environment: EnvironmentConfig = {
   FLUTTERWAVE_SECRET_KEY: "FLWSECK-your-flutterwave-secret-key",
   FLUTTERWAVE_PUBLIC_KEY: "FLWPUBK-your-flutterwave-public-key",
   
-  // Interswitch - Get from https://developer.interswitchng.com
-  INTERSWITCH_CLIENT_ID: "your_interswitch_client_id",
-  INTERSWITCH_CLIENT_SECRET: "your_interswitch_client_secret",
+  // Interswitch - Temporarily commented out
+  // INTERSWITCH_CLIENT_ID: "your_interswitch_client_id",
+  // INTERSWITCH_CLIENT_SECRET: "your_interswitch_client_secret",
 
   // =============================================================================
   // ⚡ DISCO API INTEGRATIONS - GET FROM EACH DISCO

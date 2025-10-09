@@ -89,14 +89,14 @@ export const PAYMENT_GATEWAYS = {
     maxAmount: 5000000,
     fee: 1.4,
   },
-  INTERSWITCH: {
-    name: 'Interswitch',
-    baseUrl: 'https://sandbox.interswitchng.com',
-    supportedMethods: ['card', 'bank_transfer'],
-    minAmount: 100,
-    maxAmount: 5000000,
-    fee: 1.2,
-  },
+  // INTERSWITCH: { // Temporarily commented out
+  //   name: 'Interswitch',
+  //   baseUrl: 'https://sandbox.interswitchng.com',
+  //   supportedMethods: ['card', 'bank_transfer'],
+  //   minAmount: 100,
+  //   maxAmount: 5000000,
+  //   fee: 1.2,
+  // },
 };
 
 export const NOTIFICATION_TEMPLATES = {

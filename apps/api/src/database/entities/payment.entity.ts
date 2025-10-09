@@ -31,7 +31,7 @@ export enum PaymentMethod {
 
 export enum PaymentGateway {
   FLUTTERWAVE = 'flutterwave',
-  INTERSWITCH = 'interswitch',
+  // INTERSWITCH = 'interswitch', // Temporarily commented out
 }
 
 export enum PaymentType {
