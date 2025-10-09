@@ -20,7 +20,7 @@ services:
   - key: NODE_ENV
     value: production
   - key: DATABASE_URL
-    value: ${powerpay-database.DATABASE_URL}
+    value: "postgresql://placeholder"
   - key: DATABASE_SSL
     value: "true"
   - key: QUEUES_ENABLED
@@ -32,10 +32,8 @@ services:
   - key: FLUTTERWAVE_SECRET_KEY
     value: FLWSECK-your-flutterwave-secret-key
 
-# External database reference (manually created)
-databases:
-- name: powerpay-database
-  cluster_name: powerpay-db
+# No managed databases - using external PostgreSQL cluster
+# Database connection will be set via environment variable
 
 # Frontend services temporarily disabled due to missing React source files
 # Uncomment and re-deploy after creating complete React applications
