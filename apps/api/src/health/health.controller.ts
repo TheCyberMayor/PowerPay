@@ -3,10 +3,11 @@ import { Controller, Get } from '@nestjs/common';
 @Controller('health')
 export class HealthController {
   @Get()
-  getHealth(): { status: string; timestamp: string } {
+  getHealth(): { status: string; timestamp: string; deployment: string } {
     return {
       status: 'OK',
       timestamp: new Date().toISOString(),
+      deployment: 'PowerPay v1.0 - Flutterwave Integration Only',
     };
   }
 
