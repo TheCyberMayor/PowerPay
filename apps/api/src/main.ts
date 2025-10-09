@@ -63,7 +63,7 @@ async function bootstrap() {
   SwaggerModule.setup('api/docs', app, document);
 
   // Use PORT environment variable directly for DigitalOcean App Platform
-  const port = process.env.PORT || configService.get('PORT', 3000);
+  const port = process.env.PORT || 3000;
   await app.listen(port, '0.0.0.0');
 
   console.log(`🚀 PowerPay API is running on: http://localhost:${port}`);
