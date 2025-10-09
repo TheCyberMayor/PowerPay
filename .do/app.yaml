@@ -27,8 +27,6 @@ services:
     value: "false"
   - key: JWT_SECRET
     value: your-super-secure-jwt-secret-key
-  - key: PAYSTACK_SECRET_KEY
-    value: sk_live_your_paystack_secret_key
   - key: FLUTTERWAVE_SECRET_KEY
     value: FLWSECK-your-flutterwave-secret-key
 
@@ -58,8 +56,8 @@ services:
 #     value: ${api.PUBLIC_URL}/api
 #   - key: REACT_APP_ENVIRONMENT
 #     value: production
-#   - key: REACT_APP_PAYSTACK_PUBLIC_KEY
-#     value: pk_live_your_paystack_public_key
+#   - key: REACT_APP_FLUTTERWAVE_PUBLIC_KEY
+#     value: FLWPUBK-your_public_key
 #
 # # Admin Dashboard Service  
 # - name: admin

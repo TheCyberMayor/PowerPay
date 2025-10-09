@@ -139,7 +139,6 @@ export enum PaymentMethod {
 }
 
 export enum PaymentGateway {
-  PAYSTACK = 'paystack',
   FLUTTERWAVE = 'flutterwave',
   REMITA = 'remita',
   INTERSWITCH = 'interswitch',

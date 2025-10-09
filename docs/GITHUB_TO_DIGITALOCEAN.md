@@ -69,15 +69,13 @@ DigitalOcean will auto-detect your apps based on `.do/app.yaml`:
 In DigitalOcean App Platform dashboard, add these **required** variables:
 
 ```
-# Payment Gateway (Required)
-PAYSTACK_SECRET_KEY=sk_live_your_paystack_secret_key
-PAYSTACK_PUBLIC_KEY=pk_live_your_paystack_public_key
+# Payment Gateways (Required)
+FLUTTERWAVE_SECRET_KEY=FLWSECK-your-flutterwave-secret-key
+INTERSWITCH_SECRET_KEY=your-interswitch-secret-key
+REMITA_SECRET_KEY=your-remita-secret-key
 
 # Security (Required)  
 JWT_SECRET=your-super-secure-jwt-secret-key-32-chars-min
-
-# Optional but Recommended
-FLUTTERWAVE_SECRET_KEY=FLWSECK-your-flutterwave-secret-key
 TERMII_API_KEY=your_termii_api_key
 SENDGRID_API_KEY=SG.your_sendgrid_api_key
 ```

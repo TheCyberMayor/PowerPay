@@ -11,7 +11,7 @@ This repository is configured for one-click deployment to DigitalOcean App Platf
 ### Prerequisites
 - GitHub account
 - DigitalOcean account  
-- Nigerian payment gateway API keys (Paystack, Flutterwave)
+- Nigerian payment gateway API keys (Flutterwave)
 
 ### 🎯 One-Click Deploy
 1. Click the "Deploy to DigitalOcean" button above
@@ -59,7 +59,7 @@ Your PowerPay application will be live in 5-10 minutes.
 - ✅ Tariff and penalty management
 
 ### Integration Features
-- ✅ Payment Gateways: Paystack, Flutterwave, Remita, Interswitch
+- ✅ Payment Gateways: Flutterwave, Remita, Interswitch
 - ✅ DISCO APIs: Ikeja Electric, Eko Disco, Abuja Disco, PHED
 - ✅ Notification Services: Termii SMS, SendGrid Email
 
@@ -69,7 +69,7 @@ Your PowerPay application will be live in 5-10 minutes.
 - **Backend**: Node.js, NestJS, TypeScript
 - **Database**: PostgreSQL, Redis
 - **Authentication**: JWT, OAuth2.0, Passport.js
-- **Payments**: Paystack, Flutterwave, Remita APIs
+- **Payments**: Flutterwave, Remita APIs
 - **Notifications**: Firebase, Termii, SendGrid
 - **Cloud**: AWS (EC2, RDS, S3, Lambda)
 - **Monitoring**: Winston, Prometheus, Grafana

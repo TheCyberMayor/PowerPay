@@ -162,15 +162,16 @@ The React Native mobile app (`apps/mobile`) cannot be deployed to Vercel. Instea
 ### Frontend Apps (Vercel)
 - [ ] `REACT_APP_API_URL`
 - [ ] `REACT_APP_ENVIRONMENT`
-- [ ] `REACT_APP_PAYSTACK_PUBLIC_KEY`
+- [ ] `REACT_APP_FLUTTERWAVE_PUBLIC_KEY`
 - [ ] `REACT_APP_GOOGLE_ANALYTICS_ID` (optional)
 
 ### Backend API (Railway/Render)
 - [ ] `DATABASE_URL`
 - [ ] `REDIS_URL`
 - [ ] `JWT_SECRET`
-- [ ] `PAYSTACK_SECRET_KEY`
 - [ ] `FLUTTERWAVE_SECRET_KEY`
+- [ ] `INTERSWITCH_SECRET_KEY`
+- [ ] `REMITA_SECRET_KEY`
 - [ ] All DISCO API keys
 - [ ] Notification service keys
 

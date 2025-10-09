@@ -69,8 +69,9 @@ Your PowerPay project is now live on GitHub:
    DATABASE_URL=${db.DATABASE_URL}
    REDIS_URL=${redis.DATABASE_URL}
    JWT_SECRET=your-super-secure-jwt-secret-key
-   PAYSTACK_SECRET_KEY=sk_test_your_paystack_key
    FLUTTERWAVE_SECRET_KEY=FLWSECK-your-flutterwave-key
+   INTERSWITCH_SECRET_KEY=your-interswitch-key
+   REMITA_SECRET_KEY=your-remita-key
    ```
 
 7. **Deploy!**

@@ -29,10 +29,12 @@ services:
     value: "false"
   - key: JWT_SECRET
     value: your-super-secure-jwt-secret-key
-  - key: PAYSTACK_SECRET_KEY
-    value: sk_live_your_paystack_secret_key
   - key: FLUTTERWAVE_SECRET_KEY
     value: FLWSECK-your-flutterwave-secret-key
+  - key: INTERSWITCH_SECRET_KEY
+    value: your-interswitch-secret-key
+  - key: REMITA_SECRET_KEY
+    value: your-remita-secret-key
 
 # Databases
 databases:

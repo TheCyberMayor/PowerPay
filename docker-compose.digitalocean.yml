@@ -49,7 +49,6 @@ services:
       REDIS_PORT: 6379
       REDIS_PASSWORD: ${REDIS_PASSWORD}
       JWT_SECRET: ${JWT_SECRET}
-      PAYSTACK_SECRET_KEY: ${PAYSTACK_SECRET_KEY}
       FLUTTERWAVE_SECRET_KEY: ${FLUTTERWAVE_SECRET_KEY}
     ports:
       - "3000:3000"
@@ -74,7 +73,6 @@ services:
     environment:
       REACT_APP_API_URL: http://localhost:3000/api
       REACT_APP_ENVIRONMENT: production
-      REACT_APP_PAYSTACK_PUBLIC_KEY: ${PAYSTACK_PUBLIC_KEY}
     ports:
       - "3001:80"
     restart: unless-stopped

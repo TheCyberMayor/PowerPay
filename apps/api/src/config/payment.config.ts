@@ -1,10 +1,6 @@
 import { registerAs } from '@nestjs/config';
 
 export default registerAs('payment', () => ({
-  paystack: {
-    secretKey: process.env.PAYSTACK_SECRET_KEY,
-    publicKey: process.env.PAYSTACK_PUBLIC_KEY,
-  },
   flutterwave: {
     secretKey: process.env.FLUTTERWAVE_SECRET_KEY,
     publicKey: process.env.FLUTTERWAVE_PUBLIC_KEY,

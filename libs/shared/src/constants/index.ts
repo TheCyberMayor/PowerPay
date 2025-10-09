@@ -81,14 +81,6 @@ export const DISCO_INFO = {
 };
 
 export const PAYMENT_GATEWAYS = {
-  PAYSTACK: {
-    name: 'Paystack',
-    baseUrl: 'https://api.paystack.co',
-    supportedMethods: ['card', 'bank_transfer', 'ussd'],
-    minAmount: 50,
-    maxAmount: 5000000,
-    fee: 1.5,
-  },
   FLUTTERWAVE: {
     name: 'Flutterwave',
     baseUrl: 'https://api.flutterwave.com/v3',
